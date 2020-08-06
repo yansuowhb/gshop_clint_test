@@ -8,8 +8,8 @@
 
 <script>
 
-import Footer from "./compontent/Footer";
-import Header from "./compontent/Header";
+import Footer from "./compontent/Footer/Footer";
+import Header from "./compontent/Header/Header";
 export default {
   name: 'App',
   components: {Footer,Header},

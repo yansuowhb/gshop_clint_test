@@ -1,15 +1,13 @@
 <template>
-    <div>
-        footer
-    </div>
+    <div>Home</div>
 </template>
 
 <script>
     export default {
-        name: "Footer"
+        name: "Home"
     }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 
 </style>

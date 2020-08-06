@@ -1,7 +1,7 @@
-import register from "../pages/register";
-import login from "../pages/Login";
-import Home from "../pages/Home";
-import seacher from "../pages/seacher";
+import register from "../pages/register/register";
+import login from "../pages/Login/Login";
+import Home from "../pages/Home/Home";
+import seacher from "../pages/seacher/seacher";
 
 
 export default [
