@@ -10,10 +10,16 @@ export default [
         component:Home
     },{
         path:"/login",
-        component:login
+        component:login,
+        meta:{
+            isShowFooter:true
+        }
     },{
         path:"/register",
-        component:register
+        component:register,
+        meta:{
+            isShowFooter:true
+        }
     },{
         path:"/seacher",
         component:seacher
