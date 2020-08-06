@@ -6,22 +6,25 @@ import seacher from "../pages/seacher/seacher";
 
 export default [
     {
-        path:"/home",
-        component:Home
-    },{
-        path:"/login",
-        component:login,
-        meta:{
-            isShowFooter:true
+        path: "/home",
+        component: Home
+    }, {
+        path: "/login",
+        component: login,
+        meta: {
+            isShowFooter: true
         }
-    },{
-        path:"/register",
-        component:register,
-        meta:{
-            isShowFooter:true
+    }, {
+        name: 'register',
+        path: "/register",
+        component: register,
+        meta: {
+            isShowFooter: true
         }
-    },{
-        path:"/seacher",
-        component:seacher
+    }, {
+        name: "search",
+        path: "/search/:searchword?",
+        component: seacher,
+        props:(router)=>({keyword:router.params.searchword})
     }
 ]

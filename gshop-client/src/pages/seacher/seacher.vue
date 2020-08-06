@@ -1,12 +1,14 @@
 <template>
     <div>
-        seacher
+        <h2>searchword:{{$route.params.searchword}}</h2>
+        <h2>keyword:{{keyword}}</h2>
     </div>
 </template>
 
 <script>
     export default {
-        name: "seacher"
+        name: "seacher",
+        props:["keyword"]
     }
 </script>
 
