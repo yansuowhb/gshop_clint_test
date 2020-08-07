@@ -34,6 +34,7 @@
                 <form action="###" class="searchForm">
                     <input type="text" id="autocomplete" class="input-error input-xxlarge" v-model="searchWord" />
                     <button class="sui-btn btn-xlarge btn-danger" type="button" @click="searchFn">搜索</button>
+                    <!-- <button class="sui-btn btn-xlarge btn-danger"  @click.prevent="searchFn">搜索</button> -->
                 </form>
             </div>
         </div>
