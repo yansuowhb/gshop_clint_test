@@ -48,21 +48,8 @@ order
 pageNo
 pageSize
 * */
-export function reqGetList({}) {
-    return ajax.post("/list",{
-        data:{
-            category1Id,
-            category2Id,
-            category3Id,
-            categoryName,
-            keyword,
-            props,
-            trademark,
-            order,
-            pageNo,
-            pageSize
-        }
-    })
+export function reqProductList(searchParams) {
+    return ajax.post("/list",searchParams)
 }
 
 

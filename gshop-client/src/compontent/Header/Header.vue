@@ -49,6 +49,12 @@
                 searchWord:""
             }
         },
+        mounted () {
+            // 给总线绑定自定义事件监听clearKeyword
+            this.$bus.$on('clearKeyword', () => {
+                this.searchWord = ''
+            })
+        },
         methods:{
             searchFn(){
                 // this.$router.push(`/seacher/${this.searchWord}`)

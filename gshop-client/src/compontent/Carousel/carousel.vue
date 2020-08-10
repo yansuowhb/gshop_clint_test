@@ -24,7 +24,7 @@
             carouselList:Array
         },
         mounted (){
-            if (this.carouselList.length>0){
+            /*if (this.carouselList.length>0){
                 new Swiper (this.$refs.swiper, {
                     loop: true, // 循环模式选项
                     // 如果需要分页器
@@ -38,7 +38,7 @@
                         prevEl: '.swiper-button-prev',
                     }
                 })
-            }
+            }*/
 
         },
 

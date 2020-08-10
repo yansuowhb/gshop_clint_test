@@ -1,0 +1,179 @@
+{
+  "code": 200,
+  "message": "成功",
+  "data": {
+    "trademarkList": [
+      {
+        "tmId": 254,
+        "tmName": "小辣椒"
+      },
+      {
+        "tmId": 253,
+        "tmName": "三星"
+      },
+      {
+        "tmId": 247,
+        "tmName": "苹果"
+      },
+      {
+        "tmId": 251,
+        "tmName": "VIVO"
+      },
+      {
+        "tmId": 246,
+        "tmName": "诺基亚"
+      },
+      {
+        "tmId": 248,
+        "tmName": "荣耀"
+      }
+    ],
+    "attrsList": [
+      {
+        "attrId": 1596,
+        "attrValueList": [
+          "128G",
+          "32G"
+        ],
+        "attrName": "内存"
+      },
+      {
+        "attrId": 1597,
+        "attrValueList": [
+          "6.3",
+          "4.7"
+        ],
+        "attrName": "屏幕尺寸"
+      },
+      {
+        "attrId": 1601,
+        "attrValueList": [
+          "6.5",
+          "5.5"
+        ],
+        "attrName": "手机大小"
+      },
+      {
+        "attrId": 1604,
+        "attrValueList": [
+          "大绿色",
+          "超绿色"
+        ],
+        "attrName": "手机颜色"
+      },
+      {
+        "attrId": 1353,
+        "attrValueList": [
+          "骁龙730G"
+        ],
+        "attrName": "CPU型号"
+      },
+      {
+        "attrId": 1354,
+        "attrValueList": [
+          "6.65-6.74英寸"
+        ],
+        "attrName": "屏幕尺寸"
+      },
+      {
+        "attrId": 1355,
+        "attrValueList": [
+          "防水防尘"
+        ],
+        "attrName": "热点"
+      }
+    ],
+    "goodsList": [
+      {
+        "id": 120,
+        "defaultImg": "http://182.92.128.115:8080/group1/M00/00/0D/rBFUDF7G-SCAAq31AAFdgoifvoA470.jpg",
+        "title": "小米10--22",
+        "price": 3400.0,
+        "createTime": null,
+        "tmId": null,
+        "tmName": null,
+        "category1Id": null,
+        "category1Name": null,
+        "category2Id": null,
+        "category2Name": null,
+        "category3Id": null,
+        "category3Name": null,
+        "hotScore": 0,
+        "attrs": null
+      },
+      {
+        "id": 250,
+        "defaultImg": "http://182.92.128.115:8080/group1/M00/00/1E/rBFUDF7yGLCAd8YVAAK7B7cquMA067.png",
+        "title": "锤子 nova 7 SE (测试数据,不要删)",
+        "price": 2000.0,
+        "createTime": null,
+        "tmId": null,
+        "tmName": null,
+        "category1Id": null,
+        "category1Name": null,
+        "category2Id": null,
+        "category2Name": null,
+        "category3Id": null,
+        "category3Name": null,
+        "hotScore": 0,
+        "attrs": null
+      },
+      {
+        "id": 255,
+        "defaultImg": "http://182.92.128.115:8080/group1/M00/00/1E/rBFUDF7yoniAUgL1AAK7B7cquMA205.png",
+        "title": "大锤子手机(9527)",
+        "price": 9876.0,
+        "createTime": null,
+        "tmId": null,
+        "tmName": null,
+        "category1Id": null,
+        "category1Name": null,
+        "category2Id": null,
+        "category2Name": null,
+        "category3Id": null,
+        "category3Name": null,
+        "hotScore": 0,
+        "attrs": null
+      },
+      {
+        "id": 271,
+        "defaultImg": "http://182.92.128.115:8080/group1/M00/00/0D/rBFUDF7G-SCAE6MvAAJCIRrZR60952.jpg",
+        "title": "测试小米",
+        "price": 0.0,
+        "createTime": null,
+        "tmId": null,
+        "tmName": null,
+        "category1Id": null,
+        "category1Name": null,
+        "category2Id": null,
+        "category2Name": null,
+        "category3Id": null,
+        "category3Name": null,
+        "hotScore": 0,
+        "attrs": null
+      },
+      {
+        "id": 272,
+        "defaultImg": "http://182.92.128.115:8080/group1/M00/00/1E/rBFUDF7yoniAU2DpAALLg55w-7E984.png",
+        "title": "小锤子22223",
+        "price": 1000.0,
+        "createTime": null,
+        "tmId": null,
+        "tmName": null,
+        "category1Id": null,
+        "category1Name": null,
+        "category2Id": null,
+        "category2Name": null,
+        "category3Id": null,
+        "category3Name": null,
+        "hotScore": 0,
+        "attrs": null
+      }
+    ],
+    "total": 27,
+    "pageSize": 5,
+    "pageNo": 1,
+    "totalPages": 6
+  },
+  "ok": true
+}
