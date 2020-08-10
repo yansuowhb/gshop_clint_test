@@ -52,11 +52,14 @@
         methods:{
             searchFn(){
                 // this.$router.push(`/seacher/${this.searchWord}`)
+
                 const location={
-                    name:'search'
+                    name:'search',
+                    query: this.$route.query
                 }
                 if (this.$route.params.searchWord!==""){
-                    location.params={searchword:this.searchWord}
+                    location.params={
+                        searchword:this.searchWord}
                 }
                 this.$router.push(location)
             }
