@@ -90,7 +90,11 @@
                     query,
                     params: this.$route.params
                 }
-                this.$router.push(localtion)
+                if (this.$route.name==='search') {
+                    this.$router.replace(localtion)
+                } else {
+                    this.$router.push(localtion)
+                }
                 this.isshowlist = false
             },
             isshowFirst() {

@@ -11,15 +11,19 @@
                         </li>
                     </ul>
                     <ul class="fl sui-tag">
-                        <li class="with-x" v-if="options.categoryName" @click="deleteCategory">{{options.categoryName}}<i>×</i></li>
-                        <li class="with-x" v-if="options.searchword" @click="deleteKeyword">{{options.searchword}}<i>×</i></li>
-                        <li class="with-x" v-if="options.trademark" @click="deleteTrademark">{{options.trademark}}<i>×</i></li>
-                        <li class="with-x" v-for="(prop, index) in options.props" :key="prop" @click="deleteProp(index)">{{prop}}<i>×</i></li>
+                        <li class="with-x" v-if="options.categoryName" @click="deleteCategory">
+                            {{options.categoryName}}<i>×</i></li>
+                        <li class="with-x" v-if="options.searchword" @click="deleteKeyword">
+                            {{options.searchword}}<i>×</i></li>
+                        <li class="with-x" v-if="options.trademark" @click="deleteTrademark">
+                            {{options.trademark}}<i>×</i></li>
+                        <li class="with-x" v-for="(prop, index) in options.props" :key="prop"
+                            @click="deleteProp(index)">{{prop}}<i>×</i></li>
                     </ul>
                 </div>
 
                 <!--selector-->
-                <SearchSelector  @setTrademark="setTrademark" @addProp="addProp" />
+                <SearchSelector @setTrademark="setTrademark" @addProp="addProp"/>
 
                 <!--details-->
                 <div class="details clearfix">
@@ -121,7 +125,7 @@
             /*
       处理分页页码改变的监听回调
       */
-            handleCurrentChange (page) {
+            handleCurrentChange(page) {
                 this.getProductList(page)
             },
             getProductList(page = 1) {
@@ -152,7 +156,7 @@
             /*
       删除分类条件
       */
-            deleteCategory () {
+            deleteCategory() {
                 // 清除分类相关数据
                 this.options.categoryName = ''
                 this.options.category1Id = ''
@@ -172,7 +176,7 @@
             /*
       删除关键字条件
       */
-            deleteKeyword () {
+            deleteKeyword() {
                 // 清除keyword
                 this.options.searchword = ''
                 // 重新请求获取数据显示
@@ -190,24 +194,24 @@
             /*
       设置指定品牌
       */
-            setTrademark (trademark) {  // 品牌ID:品牌名称
-                if (this.options.trademark===trademark) return
+            setTrademark(trademark) {  // 品牌ID:品牌名称
+                if (this.options.trademark === trademark) return
                 this.options.trademark = trademark
                 this.getProductList()
             },
             /*
      删除品牌条件
      */
-            deleteTrademark () {
+            deleteTrademark() {
                 this.options.trademark = ''
                 this.getProductList()
             },
             /*
       添加一个属性条件
       */
-            addProp (prop) {  // "属性ID:属性值:属性名"
+            addProp(prop) {  // "属性ID:属性值:属性名"
                 // 如果props中已经有了, 直接结束
-                if (this.options.props.indexOf(prop)!==-1) return
+                if (this.options.props.indexOf(prop) !== -1) return
                 // 向props中添加prop
                 this.options.props.push(prop)
                 // 重新请求
@@ -216,20 +220,20 @@
             /*
       删除一个属性条件
       */
-            deleteProp (index) {
+            deleteProp(index) {
                 this.options.props.splice(index, 1)
                 this.getProductList()
             },
-            isActive(orderFlag){
+            isActive(orderFlag) {
                 return this.options.order.startsWith(orderFlag)
             },
-            setOrder(orderFlag){
+            setOrder(orderFlag) {
                 // 得到原本的order中的orderFlag, orderType
                 const [flag, type] = this.options.order.split(':')  // ['1', 'desc']
                 let orderType
                 // 点击的是当前排序项
-                if (orderFlag===flag) {
-                    orderType = type==='desc' ? 'asc' : 'desc'
+                if (orderFlag === flag) {
+                    orderType = type === 'desc' ? 'asc' : 'desc'
                 } else { // 不是当前排序项
                     orderType = 'desc'
                 }
@@ -244,7 +248,7 @@
                 handler: function (to, from) {
                     this.updateByParams(to)
                 },
-                immediate:true
+                immediate: true
             }
 
         },
@@ -253,8 +257,8 @@
                 productList: state => state.search.productList
             }),
             // 计算icon类名
-            iconClass () {
-                return this.options.order.split(':')[1]==='desc' ? 'icondown' : 'iconup'
+            iconClass() {
+                return this.options.order.split(':')[1] === 'desc' ? 'icondown' : 'iconup'
             }
         },
         mounted() {
