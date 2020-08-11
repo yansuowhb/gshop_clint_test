@@ -27,5 +27,9 @@ router.prototype.replace=function (location,onComplete,onAbort) {
 
 export default new router({
     mode:"history",
-    routes
+    routes,
+    scrollBehavior (to, from, savedPosition) {
+        // return 期望滚动到哪个的位置
+        return { x: 0, y: 0 }
+    }
 })

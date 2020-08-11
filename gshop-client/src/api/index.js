@@ -71,3 +71,9 @@ export function reqGetGoodsCar() {
 }
 
 
+
+
+// 获取商品详情信息
+export const reqDetailInfo = (skuId) => ajax.get(`/item/${skuId}`)
+
+

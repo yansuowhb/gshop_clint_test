@@ -89,7 +89,6 @@
                 for (let i=start;i<=end;i++){
                     arr.push(i)
                 }
-                console.log(arr)
                 return arr
             }
         },
@@ -98,7 +97,6 @@
                 if (page===this.myCurrentPage) return
                 // 更新内部的当前页码
                 this.myCurrentPage = page
-                console.log(page)
                 // 通知父组件当前页码变化了
                 this.$emit('currentChange', page)
             }
