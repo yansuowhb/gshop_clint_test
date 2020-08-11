@@ -1,20 +1,16 @@
 <template>
     <div class="pagination">
-        <button>1</button>
-        <button>上一页</button>
-        <button>···</button>
+        <button :disabled="currentPage==1" @click="setCurrentPage(myCurrentPage-1)">上一页</button>
+        <button v-if="startend.start>1" @click="setCurrentPage(1)">1</button>
+        <button v-if="startend.start>2">···</button>
 
-        <button>3</button>
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
-        <button>7</button>
+        <button v-for="(item,index) in startToEndArr" :key="index" :class="{active: item===myCurrentPage}" @click="setCurrentPage(item)">{{item}}</button>
 
-        <button>···</button>
-        <button>9</button>
-        <button>上一页</button>
+        <button disabled v-if="startend.end<totalPages-1">···</button>
+        <button v-if="startend.end<totalPages" @click="setCurrentPage(totalPages)">{{totalPages}}</button>
+        <button :disabled="startend.start==total" @click="setCurrentPage(myCurrentPage+1)">下一页</button>
 
-        <button style="margin-left: 30px">共 60 条</button>
+        <button style="margin-left: 30px">共 {{total}} 条</button>
     </div>
 </template>
 
@@ -48,6 +44,12 @@
                 myCurrentPage: this.currentPage || 1,//内部的当前页
             }
         },
+        watch: {
+            currentPage (value) {
+                this.myCurrentPage = value
+            }
+        },
+
         computed:{
             //确定开始与结尾页码数
             startend(){
@@ -58,7 +60,7 @@
                 start=currentPage-showPageNo/2
                 end-start=showPageNo-1
                 * */
-                start=myCurrentPage-Math.ceil(showPageNo/2)
+                start=myCurrentPage-Math.floor(showPageNo/2)
                 if (start<1){
                     start=1
                 }
@@ -70,10 +72,35 @@
                         start=1
                     }
                 }
+                console.log(start,end)
+                return{
+                    start,
+                    end
+                }
             },
         //    确定总页码数
-            totalpage(){
+            totalPages(){
                 return Math.ceil(this.total/this.pageSize)
+            },
+        //    有开始到结束页码组成的数组
+            startToEndArr(){
+                const {start,end} =this.startend
+                let arr=[]
+                for (let i=start;i<=end;i++){
+                    arr.push(i)
+                }
+                console.log(arr)
+                return arr
+            }
+        },
+        methods:{
+            setCurrentPage (page) {
+                if (page===this.myCurrentPage) return
+                // 更新内部的当前页码
+                this.myCurrentPage = page
+                console.log(page)
+                // 通知父组件当前页码变化了
+                this.$emit('currentChange', page)
             }
         }
     }
