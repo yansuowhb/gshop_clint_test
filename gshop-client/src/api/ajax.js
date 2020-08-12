@@ -10,6 +10,8 @@ const instace =axios.create({
 
 instace.interceptors.request.use(function (config) {
     NProgress.start()
+    const userTempId=localStorage.getItem("USER_TEMP_ID")
+    config.headers.userTempId=userTempId
     return config;
 })
 

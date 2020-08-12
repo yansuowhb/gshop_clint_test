@@ -70,12 +70,12 @@
             </div>
             <div class="cartWrap">
               <div class="controls">
-                <input autocomplete="off" class="itxt">
-                <a href="javascript:" class="plus">+</a>
-                <a href="javascript:" class="mins">-</a>
+                <input autocomplete="off" class="itxt" v-model="skuNum" @change="setskuNum(event)">
+                <a href="javascript:" class="plus" @click="add">+</a>
+                <a href="javascript:" class="mins" @click="res">-</a>
               </div>
               <div class="add">
-                <a href="javascript:">加入购物车</a>
+                <a href="javascript:" @click="addToCart">加入购物车</a>
               </div>
             </div>
           </div>
@@ -334,10 +334,27 @@
     name: 'Detail',
     data(){
       return{
-        currentImgIndex:0//当前大图下标默认为0有ImageList子组件来改
+        currentImgIndex:0,//当前大图下标默认为0有ImageList子组件来改
+        skuNum:1
       }
     },
     methods:{
+      setskuNum(event){
+        this.skuNum=event.target.value
+        // console.log(value)
+        // console.log(event.target.value)
+      },
+      add(){
+        this.skuNum++
+      },
+      res(){
+        if (this.skuNum<=1){
+          this.skuNum=1
+        }else {
+          --this.skuNum
+        }
+      },
+      //选中更改状态
       updateColor(item,index){
         console.log(index)
         item.forEach((it)=>{
@@ -349,9 +366,29 @@
       currentindex(index){
         console.log(index)
         this.currentImgIndex=index
+      },
+    //  添加到购物车
+      async addToCart(){
+        let skuId=this.$route.params.skuid
+        let skuNum=this.skuNum
+        try {
+          await this.$store.dispatch("addToCart",{skuId,skuNum})
+          window.sessionStorage.setItem("skuInfo",JSON.stringify(this.skuInfo))
+        //  添加成功要跳转到成功页面
+          this.$router.push({
+            path:"/addcartsuccess",
+            query:{
+              skuNum:skuNum
+            }
+        })
+        }catch (e) {
+          alert("失败",e.messages)
+        }
+
       }
     },
     mounted() {
+      //获取指定id的商品信息
       this.$store.dispatch("getDetailInfo",this.$route.params.skuid)
     },
     computed: {

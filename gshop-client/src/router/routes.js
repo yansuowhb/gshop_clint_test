@@ -3,6 +3,8 @@ import login from "../pages/Login/Login";
 import Home from "../pages/Home/Home";
 import seacher from "../pages/seacher/seacher";
 import Detail from "../pages/Detail";
+import AddCartSuccess from "../pages/AddCartSuccess";
+import ShopCart from "../pages/ShopCart";
 
 
 export default [
@@ -32,7 +34,16 @@ export default [
         props:(router)=>({keyword:router.params.searchword})
     },
     {
+        name: "detail",
         path: "/detail/:skuid",
         component: Detail
+    },
+    {
+        path: "/addcartsuccess",
+        component: AddCartSuccess
+    },
+    {
+        path: "/shopcart",
+        component: ShopCart
     }
 ]
