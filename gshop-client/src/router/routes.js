@@ -1,5 +1,5 @@
-import register from "../pages/register/register";
-import login from "../pages/Login/Login";
+import register from "../pages/Register";
+import login from "../pages/Login";
 import Home from "../pages/Home/Home";
 import seacher from "../pages/seacher/seacher";
 import Detail from "../pages/Detail";

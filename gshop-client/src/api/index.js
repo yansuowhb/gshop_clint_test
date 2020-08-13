@@ -11,17 +11,19 @@ export function reqBanners() {
 export function reqFloors() {
     return mockAjax("/floors")
 }
+
+// 登陆  /api/user/passport/login
+export const reqLogin = (mobile, password) => ajax.post('/user/passport/login', {mobile, password})
+
+// 退出登陆 /user/passport/logout
+export const reqLogout = ()=>ajax.get('/user/passport/logout')
+
 /*
-登录接口
-/api/user/passport/login  POST   mobile,password
+16.注册用户
+/user/passport/register
 * */
-export function reqLogin({midle,password}) {
-    return ajax.post("/user/passport/login",{
-        midle,password
-    })
-}
 
-
+export const reqRegister = (userInfo) => ajax.post('/user/passport/register', userInfo)
 
 /*
 首页三级分类

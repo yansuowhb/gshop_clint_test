@@ -63,10 +63,12 @@
                     name:'search',
                     query: this.$route.query
                 }
-                if (this.$route.params.searchWord!==""){
+                if (this.$route.params.searchword!==""){
                     location.params={
                         searchword:this.searchWord}
                 }
+
+
                 if (this.$route.name==='search') {
                     this.$router.replace(location)
                 } else {
