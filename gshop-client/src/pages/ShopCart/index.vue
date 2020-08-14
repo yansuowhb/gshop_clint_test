@@ -24,7 +24,7 @@
           </li>
           <li class="cart-list-con5">
             <a href="javascript:" class="mins" @click="res(item)">-</a>
-            <input autocomplete="off" type="text" :value="item.skuNum" @change="setskuNum(item,$event)"  minnum="1" class="itxt">
+            <input autocomplete="off" type="text" :value="item.skuNum" @change="setskuNum(item,$event)"  minnum="1" class="itxt" @input="validSkuNum">
             <a href="javascript:" class="plus" @click="add(item)">+</a>
           </li>
           <li class="cart-list-con6">
@@ -68,7 +68,11 @@
   export default {
     name: 'ShopCart',
     methods:{
-
+      //  用正则检测数据是否正确
+        validSkuNum(event){
+            const value=event.target.value
+            event.target.value=value.replace(/^0+|\D+0*/g,'')||1
+        },
       //切换商品选中状态
       async checkCartItem(item){
         const skuId=item.skuId
@@ -108,6 +112,10 @@
         let skuId=item.skuId
         let newNum=event.target.value
         let skuNum=newNum-item.skuNum
+          // if (newNum<1 || typeof newNum!="Numbel" ||newNum%1!=0) {
+          //     event.target.value=item.skuNum
+          //     return
+          // }
         // console.log(newNum,item.skuNum,skuNum,skuId)
         try {
           await this.$store.dispatch("addToCart",{skuId,skuNum})
@@ -132,6 +140,7 @@
       async res(item){
         let skuId=item.skuId
         let skuNum=-1
+        if (item.skuNum<=1) return
         // console.log(newNum,item.skuNum,skuNum,skuId)
         try {
           await this.$store.dispatch("addToCart",{skuId,skuNum})

@@ -14,7 +14,13 @@
       <div class="content">
         <label>验证码:</label>
         <input type="text" placeholder="请输入验证码" @change="setCode">
-        <img ref="code" src="http://182.92.128.115/api/user/passport/code" alt="code">
+<!--        这里完整地址是http://182.92.128.115/api/user/passport/code
+            但是如果填了完整地址，这个标签就会自动发送请求去获取这个图片，是浏览器端发送的请求，因为后端要验证用户输入的验证码是否正确
+            会记录这个请求的相关信息，当下一次再向后端发送注册请求，并带上验证码后，后端就会检查这个验证码即其请求的相关信息。但是我们发
+            送的是代理发送的请求，就造成了，图片的请求是浏览器发送的，注册请求是代理发送的，后端在检测的时候发现记录的信息不对，故报验证
+            码错误
+-->
+        <img ref="code" src="/api/user/passport/code" alt="code">
         <span class="error-msg">错误提示信息</span>
       </div>
       <div class="content">
@@ -99,12 +105,11 @@
         mobile:'',
         //保存用户密码
         password:'',
+        password2:'',
       //  保存验证码
         code:'',
       //  判断用户是否点击了统一协议
-        flag:false,
-        //判断两次密码是否一致
-        disabled:false
+        isAgree:false,
       }
     }
   }

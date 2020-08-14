@@ -70,7 +70,7 @@
             </div>
             <div class="cartWrap">
               <div class="controls">
-                <input autocomplete="off" class="itxt" v-model="skuNum" @change="setskuNum(event)">
+                <input autocomplete="off" class="itxt" v-model="skuNum" @change="setskuNum">
                 <a href="javascript:" class="plus" @click="add">+</a>
                 <a href="javascript:" class="mins" @click="res">-</a>
               </div>
@@ -340,6 +340,7 @@
     },
     methods:{
       setskuNum(event){
+        if (!typeof event.target.value=="Numbel") return
         this.skuNum=event.target.value
         // console.log(value)
         // console.log(event.target.value)
@@ -390,6 +391,18 @@
     mounted() {
       //获取指定id的商品信息
       this.$store.dispatch("getDetailInfo",this.$route.params.skuid)
+    },
+    watch:{
+      skuNum:{
+        handler:function (value) {
+          let reg=/^0+|\D+0*/g
+          value+=''
+          if (value.match(reg)){
+            this.skuNum=value.replace(reg,'')||1
+          }
+
+        }
+      }
     },
     computed: {
       ...mapGetters(['categoryView', 'skuInfo', 'skuImageList', 'spuSaleAttrList'])

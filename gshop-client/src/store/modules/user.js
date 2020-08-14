@@ -11,9 +11,10 @@ const state = {
 }
 const mutations = {}
 const actions = {
-    async register(userInfo){
+    async register({commit},userInfo){
         //请求注册
         const result = await reqRegister(userInfo)
+        console.log(userInfo)
         // console.log(result)
         //result数据为空只需判断状态码即可
         if (result.code!==200) {  // 失败了
