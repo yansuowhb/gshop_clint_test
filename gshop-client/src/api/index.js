@@ -13,7 +13,7 @@ export function reqFloors() {
 }
 
 // 登陆  /api/user/passport/login
-export const reqLogin = (mobile, password) => ajax.post('/user/passport/login', {mobile, password})
+export const reqLogin = (mobile,password) => ajax.post('/user/passport/login', {mobile, password})
 
 // 退出登陆 /user/passport/logout
 export const reqLogout = ()=>ajax.get('/user/passport/logout')

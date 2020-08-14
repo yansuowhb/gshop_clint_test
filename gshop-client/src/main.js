@@ -6,6 +6,8 @@ import Carousel from "./compontent/Carousel/carousel"
 import Pagination from "./compontent/Pagination"
 import store from "./store"
 import "@/mock/mockServe"
+//表单验证插件
+import "@/plugins"
 Vue.component("TypeNav",TypeNav)
 Vue.component("Carousel",Carousel)
 Vue.component("Pagination",Pagination)
