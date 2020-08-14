@@ -8,32 +8,32 @@
       </h3>
       <div class="content">
         <label>手机号:</label>
-        <input type="text" placeholder="请输入你的手机号">
+        <input type="text" placeholder="请输入你的手机号" @change="setModile">
         <span class="error-msg">错误提示信息</span>
       </div>
       <div class="content">
         <label>验证码:</label>
-        <input type="text" placeholder="请输入验证码">
+        <input type="text" placeholder="请输入验证码" @change="setCode">
         <img ref="code" src="http://182.92.128.115/api/user/passport/code" alt="code">
         <span class="error-msg">错误提示信息</span>
       </div>
       <div class="content">
         <label>登录密码:</label>
-        <input type="text" placeholder="请输入你的登录密码">
+        <input type="text" placeholder="请输入你的登录密码" @change="setPassword">
         <span class="error-msg">错误提示信息</span>
       </div>
       <div class="content">
         <label>确认密码:</label>
-        <input type="text" placeholder="请输入确认密码">
+        <input type="text" placeholder="请输入确认密码" @change="setPassword">
         <span class="error-msg">错误提示信息</span>
       </div>
       <div class="controls">
-        <input name="m1" type="checkbox">
+        <input name="m1" type="checkbox" v-model="flag">
         <span>同意协议并注册《尚品汇用户协议》</span>
         <span class="error-msg">错误提示信息</span>
       </div>
       <div class="btn">
-        <button>完成注册</button>
+        <button @click="register" :disabled="disabled">完成注册</button>
       </div>
     </div>
 
@@ -58,7 +58,55 @@
 
 <script>
   export default {
-    name: 'Register'
+    name: 'Register',
+    methods:{
+      setModile(event){
+        this.mobile=event.target.value
+      },
+      setCode(event){
+        this.code=event.target.value
+      },
+      setPassword(event){
+        const value=event.target.value
+        if (!this.password){
+          this.password=value
+        }else if (this.password!=value){
+          alert("两次密码不一致")
+        }else {
+          this.password=value
+        }
+      },
+      async register(){
+      //  用户点击注册-》分发请求注册-》成功跳转到登录页面
+        const {mobile,password,code,flag}=this
+        //没有同意协议，拒绝注册
+        if (!flag) {
+          alert("请同意协议")
+          return
+        }
+        try {
+          await this.$store.dispatch("register",{mobile,password,code})
+          this.$router.push("/login")
+        }catch (e) {
+          alert(e.message)
+        }
+
+      }
+    },
+    data(){
+      return{
+        //保存用户电话
+        mobile:'',
+        //保存用户密码
+        password:'',
+      //  保存验证码
+        code:'',
+      //  判断用户是否点击了统一协议
+        flag:false,
+        //判断两次密码是否一致
+        disabled:false
+      }
+    }
   }
 </script>
 
