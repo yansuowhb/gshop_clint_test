@@ -86,53 +86,60 @@
 <script>
   import {mapState} from "vuex"
   import QRCode from 'qrcode'
-  import { MessageBox } from 'element-ui'
   export default {
     name: 'Pay',
     methods:{
-       open() {
-
-         const time= setInterval(async ()=>{
+       async open() {
+         const imgUrl=await QRCode.toDataURL(this.payInfo.codeUrl)
+         this.time= setInterval(async ()=>{
            try {
              const result=await this.$API.reqOrderStatus(this.orderId)
              console.log(result)
              if (result.code==200){
-               clearInterval(time)
-               //这里用的是shopCart的删除选中商品的action，
-               await this.$store.dispatch("deleteAllCartItems")
-               MessageBox.close()
+               //支付成功，关闭定时器
+               clearInterval(this.time)
+               this.time=null
+               //关闭对话框
+               this.$msgbox.close()
+               // 提示支付成功
+               this.$message.success('支付成功')
+               //跳转到成功界面
                this.$router.replace("/paysuccess")
-               console.log("支付成功")
+               //这里用的是shopCart的删除选中商品的action，
+               this.$store.dispatch("deleteAllCartItems")
              }
            }catch (e) {
-             clearInterval(time)
-             alert(e.message)
+             //支付失败,关闭定时器
+             clearInterval(this.time)
+             this.time=null
+
+             //弹窗提示
+             this.$message({
+               type: 'info',
+               message: e.message
+             });
            }
-
-
-
          },5000)
-        MessageBox.confirm(`<img src=${this.imgUrl}>`, {
+        this.$confirm(`<img src=${imgUrl}>`,'请使用微信支付', {
           confirmButtonText: '已支付',
           cancelButtonText: '取消',
           center: true,
+          showClose: false, // 不显示右上角的关闭按钮
           dangerouslyUseHTMLString: true
         }).then(() => {
           //点击对话框后把定时器清了
-          clearInterval(time)
-          this.$message({
-            type: 'success',
-            message: '成功!'
-          });
+          clearInterval(this.time)
+          this.time=null
+
         }).catch(() => {
-          clearInterval(time)
+          clearInterval(this.time)
+          this.time=null
+
           this.$message({
             type: 'info',
             message: '取消支付'
           });
         });
-
-
       }
     },
     async mounted() {
@@ -140,8 +147,6 @@
       this.orderId=orderId
       try {
         await this.$store.dispatch("getPayInfo",orderId)
-        const imgUrl=await QRCode.toDataURL(this.payInfo.codeUrl)
-        this.imgUrl=imgUrl
       }catch (e) {
         alert(e.message)
       }
@@ -154,8 +159,13 @@
     },
     data(){
       return{
-        imgUrl:'',
         orderId:''
+      }
+    },
+    beforeDestroy () {
+      if (this.time) {
+        clearInterval(this.time)
+        this.$msgbox.close()
       }
     }
   }

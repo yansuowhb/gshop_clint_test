@@ -1,17 +1,33 @@
-import register from "../pages/Register";
-import login from "../pages/Login";
-import Home from "../pages/Home/Home";
-import seacher from "../pages/seacher/seacher";
-import Detail from "../pages/Detail";
-import AddCartSuccess from "../pages/AddCartSuccess";
-import ShopCart from "../pages/ShopCart";
-import Pay from "../pages/Pay";
-import Trade from "../pages/Trade";
-import PaySuccess from "../pages/PaySuccess";
-import Center from "../pages/Center";
-import GroupBuy from "../pages/Center/GroupBuy/GroupBuy";
-import MyOrder from "../pages/Center/MyOrder/MyOrder";
+// import register from "@/pages/Register";
+// import login from "@/pages/Login";
+// import Home from "@/pages/Home/Home";
+// import seacher from "@/pages/seacher/seacher";
+// import Detail from "@/pages/Detail";
+// import AddCartSuccess from "@/pages/AddCartSuccess";
+// import ShopCart from "@/pages/ShopCart";
+// import Pay from "@/pages/Pay";
+// import Trade from "@/pages/Trade";
+// import PaySuccess from "@/pages/PaySuccess";
+// import Center from "@/pages/Center";
+// import GroupBuy from "@/pages/Center/GroupBuy/GroupBuy";
+// import MyOrder from "@/pages/Center/MyOrder/MyOrder";
 import store from '@/store'
+
+//模块懒加载-》只有当访问当前路由时才会加载当前js文件
+const register=()=>import("@/pages/Register")
+const login=()=>import("@/pages/Login")
+const seacher=()=>import("@/pages/seacher/seacher")
+const Home=()=>import("@/pages/Home/Home")
+const Detail=()=>import("@/pages/Detail")
+const AddCartSuccess=()=>import("@/pages/AddCartSuccess")
+const ShopCart=()=>import("@/pages/ShopCart")
+const Pay=()=>import("@/pages/Pay")
+const Trade=()=>import("@/pages/Trade")
+const PaySuccess=()=>import("@/pages/PaySuccess")
+const Center=()=>import("@/pages/Center")
+const GroupBuy=()=>import("@/pages/Center/GroupBuy/GroupBuy")
+const MyOrder=()=>import("@/pages/Center/MyOrder/MyOrder")
+
 
 
 export default [
@@ -111,5 +127,63 @@ export default [
                 next('/pay')
             }
         }
+    },
+
+
+
+    {
+        path: '/communication',
+        component: () => import('@/pages/Communication/Communication'),
+        children: [
+            {
+                path: 'event',
+                component: () => import('@/pages/Communication/EventTest/EventTest'),
+                meta: {
+                    isShowFooter: true
+                },
+            },
+            {
+                path: 'model',
+                component: () => import('@/pages/Communication/ModelTest/ModelTest'),
+                meta: {
+                    isShowFooter: true
+                },
+            },
+            {
+                path: 'sync',
+                component: () => import('@/pages/Communication/SyncTest/SyncTest'),
+                meta: {
+                    isShowFooter: true
+                },
+            },
+            {
+                path: 'attrs-listeners',
+                component: () => import('@/pages/Communication/AttrsListenersTest/AttrsListenersTest'),
+                meta: {
+                    isShowFooter: true
+                },
+            },
+            {
+                path: 'children-parent',
+                component: () => import('@/pages/Communication/ChildrenParentTest/ChildrenParentTest'),
+                meta: {
+                    isShowFooter: true
+                },
+            },
+            {
+                path: 'scope-slot',
+                component: () => import('@/pages/Communication/ScopeSlotTest/ScopeSlotTest'),
+                meta: {
+                    isShowFooter: true
+                },
+            },
+            {
+                path: 'provide-inject',
+                component: () => import('@/pages/Communication/ProvideInjectTest/ProvideInjectTest'),
+                meta: {
+                    isShowFooter: true
+                },
+            },
+        ],
     }
 ]
