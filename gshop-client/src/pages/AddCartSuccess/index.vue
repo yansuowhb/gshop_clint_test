@@ -28,6 +28,16 @@
       return{
         skuInfo:JSON.parse(window.sessionStorage.getItem("skuInfo"))
       }
+    },
+    //	c.只有携带的skuNum以及sessionStorage中有skuInfo数据, 才能查看添加购物车成功的界面
+    beforeRouteEnter(to,from,next){
+      const skuNum=to.query.skuNum
+      const skuInfo=sessionStorage.getItem("skuInfo")
+      if (skuNum &&skuInfo){
+        next()
+      }else {
+        next("/search")
+      }
     }
   }
 </script>

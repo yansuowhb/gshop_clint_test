@@ -1,6 +1,7 @@
 import router from "vue-router"
 import vue from "vue"
 import routes from "./routes";
+import store from "@/store"
 vue.use(router)
 
 let newpush=router.prototype.push
@@ -23,9 +24,7 @@ router.prototype.replace=function (location,onComplete,onAbort) {
     }
 }
 
-
-
-export default new router({
+const Router=new router({
     mode:"history",
     routes,
     scrollBehavior (to, from, savedPosition) {
@@ -33,3 +32,25 @@ export default new router({
         return { x: 0, y: 0 }
     }
 })
+//当用户访问一下开头的路径时，必须已登录
+const checkPaths = ['/trade', '/pay', '/center']
+
+ Router.beforeEach(((to, from, next) => {
+//    全局守卫
+    console.log("全局守卫")
+    const targrt=to.path
+    const success=checkPaths.some((path)=> targrt.startsWith(path))
+    if (success){
+        const token=store.state.user.userInfo.token
+        if (token){
+            next()
+        }else {
+            next("/login")
+        }
+    }else {
+        next()
+    }
+}))
+
+
+export default Router

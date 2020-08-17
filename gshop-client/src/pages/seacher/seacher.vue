@@ -79,8 +79,7 @@
                                         <i class="command">已有<span>2000</span>人评价</i>
                                     </div>
                                     <div class="operate">
-                                        <a href="success-cart.html" target="_blank"
-                                           class="sui-btn btn-bordered btn-danger">加入购物车</a>
+                                        <a @click="addToCart(good.id)" class="sui-btn btn-bordered btn-danger">加入购物车</a>
                                         <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
                                     </div>
                                 </div>
@@ -242,6 +241,24 @@
                 // 更新order
                 this.options.order = `${orderFlag}:${orderType}`
                 this.getProductList()
+            },
+        //    点击加入购物车
+            async addToCart(skuId){
+                let skuNum=1
+                try {
+                    await this.$store.dispatch("addToCart",{skuId,skuNum})
+                    await this.$store.dispatch("getDetailInfo",skuId)
+                    //  添加成功要跳转到成功页面
+                    this.$router.push({
+                        path:"/addcartsuccess",
+                        query:{
+                            skuNum:skuNum
+                        }
+                    })
+                }catch (e) {
+                    alert("失败",e.messages)
+                }
+
             }
         },
         watch: {
@@ -263,7 +280,6 @@
             }
         },
         mounted() {
-            console.log("search")
             this.$store.dispatch("getProductList", this.options)
         },
         components: {

@@ -40,6 +40,8 @@ const getters = {
     */
     skuInfo(state){
         const skuInfo = state.detailInfo.skuInfo
+        window.sessionStorage.setItem("skuInfo",JSON.stringify(skuInfo))
+
         return skuInfo ? skuInfo : {}
     },
 

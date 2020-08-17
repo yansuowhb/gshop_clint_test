@@ -97,6 +97,7 @@ const getters = {
         return state.cartList.reduce((pre,item)=> pre + (item.isChecked===1 ? item.skuNum : 0),0)
     },
     //选中商品总价钱
+
     totalPrice(state){
         return state.cartList.reduce((pre,item)=> pre + (item.isChecked===1?item.skuPrice:0)*item.skuNum,0)
     },

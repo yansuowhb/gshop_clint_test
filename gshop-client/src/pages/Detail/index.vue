@@ -374,7 +374,6 @@
         let skuNum=this.skuNum
         try {
           await this.$store.dispatch("addToCart",{skuId,skuNum})
-          window.sessionStorage.setItem("skuInfo",JSON.stringify(this.skuInfo))
         //  添加成功要跳转到成功页面
           this.$router.push({
             path:"/addcartsuccess",
@@ -410,6 +409,14 @@
     components: {
       ImageList,
       Zoom
+    },
+    beforeRouteEnter (to, from, next) {
+      // 在渲染该组件的对应路由被 confirm 前调用
+      // 不！能！获取组件实例 `this`
+      // 因为当守卫执行前，组件实例还没被创建
+      console.log(to)
+      console.log(from)
+      next()
     }
   }
 </script>
